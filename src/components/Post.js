@@ -5,6 +5,7 @@ export default function Post(props) {
     let [bookmark, setBookmark] = React.useState("bookmark-outline");
     let [like, setLike] = React.useState("heart-outline");
     let [likeClass, setLikeClass] = React.useState("");
+    let [bonusLikeClass, setBonusLikeClass] = React.useState("heart-bonus hide")
 
     function bookmarkToggle() {
         if (bookmark === "bookmark-outline") setBookmark("bookmark");
@@ -31,14 +32,22 @@ export default function Post(props) {
 
     function likePost() {
         if (like === "heart-outline") {
+            showBonusLike();
             setLike("heart");
             setLikes(++likes);
             setLikeClass("red");
         }
     }
 
+    function showBonusLike() {
+        setBonusLikeClass("heart-bonus");
+        setTimeout(() => {
+            setBonusLikeClass("heart-bonus hide")
+        }, 500);
+    }
+
     return (
-        <div class="post">
+        <div class="post" data-test="post">
             <div class="topo">
                 <div class="usuario">
                     <img src={props.user.image} alt={props.user.name} />
@@ -50,24 +59,25 @@ export default function Post(props) {
             </div>
 
             <div class="conteudo">
-                <img src={props.content.image} alt={props.content.name} onClick={likePost}/>
+                <img src={props.content.image} alt={props.content.name} onDoubleClick={likePost} data-test="post-image"/>
+                <ion-icon class={bonusLikeClass} name="heart"></ion-icon>
             </div>
 
             <div class="fundo">
                 <div class="acoes">
                     <div>
-                        <ion-icon class={likeClass} name={like} onClick={likeToggle}></ion-icon>
+                        <ion-icon class={likeClass} name={like} onClick={likeToggle} data-test="like-post"></ion-icon>
                         <ion-icon name="chatbubble-outline"></ion-icon>
                         <ion-icon name="paper-plane-outline"></ion-icon>
                     </div>
                     <div>
-                        <ion-icon name={bookmark} onClick={bookmarkToggle}></ion-icon>
+                        <ion-icon name={bookmark} onClick={bookmarkToggle} data-test="save-post"></ion-icon>
                     </div>
                 </div>
 
                 <div class="curtidas">
                     <img src={props.likes.image} alt={props.likes.name} />
-                    <div class="texto">
+                    <div class="texto" data-test="likes-number">
                         Curtido por <strong>{props.likes.name}</strong> e <strong>outras {likes} pessoas</strong>
                     </div>
                 </div>

@@ -308,3 +308,25 @@ ion-icon {
 .red {
   color: red;
 }
+
+.conteudo {
+  position: relative;
+}
+
+.heart-bonus {
+  color: white;
+  position: absolute;
+  top: 40%;
+  left: 38%;
+  font-size: 150px;
+  animation: heart 0.3s;
+}
+
+@keyframes heart {
+  from {scale: 0.2;}
+  to {scale: 1;}
+}
+
+.hide {
+  display: none;
+}
