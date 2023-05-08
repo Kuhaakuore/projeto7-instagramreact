@@ -1,22 +1,41 @@
 import React from "react";
 
-let liked = false;
-let aux;
-
-function changeLikes() {
-    if (!liked) {
-        liked = true;
-        return aux++;
-    } 
-    else {
-        liked = false;
-        return aux--;
-    }
-}
-
 export default function Post(props) {
-    const [likes, setLikes] = React.useState(props.likes.amount);
-    aux = likes;
+    let [likes, setLikes] = React.useState(props.likes.amount);
+    let [bookmark, setBookmark] = React.useState("bookmark-outline");
+    let [like, setLike] = React.useState("heart-outline");
+    let [likeClass, setLikeClass] = React.useState("");
+
+    function bookmarkToggle() {
+        if (bookmark === "bookmark-outline") setBookmark("bookmark");
+        else setBookmark("bookmark-outline");
+    }
+
+    function likeColourToggle() {
+        if (likeClass === "") setLikeClass("red");
+        else setLikeClass("");
+    }
+
+    function likeToggle() {
+        if (like === "heart-outline") {
+            setLike("heart");
+            setLikes(++likes);
+            likeColourToggle();
+        }
+        else {
+            setLike("heart-outline");
+            setLikes(--likes);
+            likeColourToggle();
+        }
+    }
+
+    function likePost() {
+        if (like === "heart-outline") {
+            setLike("heart");
+            setLikes(++likes);
+            setLikeClass("red");
+        }
+    }
 
     return (
         <div class="post">
@@ -31,18 +50,18 @@ export default function Post(props) {
             </div>
 
             <div class="conteudo">
-                <img src={props.content.image} alt={props.content.name} />
+                <img src={props.content.image} alt={props.content.name} onClick={likePost}/>
             </div>
 
             <div class="fundo">
                 <div class="acoes">
                     <div>
-                        <ion-icon name="heart-outline" onClick={() => setLikes(changeLikes)}></ion-icon>
+                        <ion-icon class={likeClass} name={like} onClick={likeToggle}></ion-icon>
                         <ion-icon name="chatbubble-outline"></ion-icon>
                         <ion-icon name="paper-plane-outline"></ion-icon>
                     </div>
                     <div>
-                        <ion-icon name="bookmark-outline"></ion-icon>
+                        <ion-icon name={bookmark} onClick={bookmarkToggle}></ion-icon>
                     </div>
                 </div>
 
