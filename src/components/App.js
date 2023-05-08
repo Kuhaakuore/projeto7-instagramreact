@@ -5,8 +5,8 @@ export default function App() {
 
     return (
         <>
-            <NavBar /> 
-            <Body />                    
+            <NavBar />
+            <Body />
         </>
     );
 }

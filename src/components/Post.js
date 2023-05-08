@@ -47,24 +47,24 @@ export default function Post(props) {
     }
 
     return (
-        <div class="post" data-test="post">
-            <div class="topo">
-                <div class="usuario">
+        <div className="post" data-test="post">
+            <div className="topo">
+                <div className="usuario">
                     <img src={props.user.image} alt={props.user.name} />
                     {props.user.name}
                 </div>
-                <div class="acoes">
+                <div className="acoes">
                     <ion-icon name="ellipsis-horizontal"></ion-icon>
                 </div>
             </div>
 
-            <div class="conteudo">
+            <div className="conteudo">
                 <img src={props.content.image} alt={props.content.name} onDoubleClick={likePost} data-test="post-image"/>
                 <ion-icon class={bonusLikeClass} name="heart"></ion-icon>
             </div>
 
-            <div class="fundo">
-                <div class="acoes">
+            <div className="fundo">
+                <div className="acoes">
                     <div>
                         <ion-icon class={likeClass} name={like} onClick={likeToggle} data-test="like-post"></ion-icon>
                         <ion-icon name="chatbubble-outline"></ion-icon>
@@ -75,9 +75,9 @@ export default function Post(props) {
                     </div>
                 </div>
 
-                <div class="curtidas">
+                <div className="curtidas">
                     <img src={props.likes.image} alt={props.likes.name} />
-                    <div class="texto" data-test="likes-number">
+                    <div className="texto" data-test="likes-number">
                         Curtido por <strong>{props.likes.name}</strong> e <strong>outras {likes} pessoas</strong>
                     </div>
                 </div>

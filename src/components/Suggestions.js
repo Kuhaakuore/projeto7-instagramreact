@@ -30,12 +30,12 @@ export default function Suggestions() {
 
 
     return (
-        <div class="sugestoes">
-            <div class="titulo">
+        <div className="sugestoes">
+            <div className="titulo">
                 Sugestões para você
                 <div>Ver tudo</div>
             </div>
-            {suggestions.map(suggestion => <Suggestion user={suggestion.user} text={suggestion.text} />)}
+            {suggestions.map(suggestion => <Suggestion key={suggestion.user.name} user={suggestion.user} text={suggestion.text} />)}
         </div>
     );
 }
